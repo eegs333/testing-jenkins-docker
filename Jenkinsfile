@@ -21,6 +21,12 @@ pipeline {
       }
     }
 
+    stage('publish') {
+      steps {
+        sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
+      }
+    }
+
     stage('test on centos') {
       agent {
         docker {
@@ -44,11 +50,6 @@ pipeline {
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
-
-    stage('publish') {
-      steps {
-        sh "cp dist/rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
-      }
-    }
+    
   }
 }
