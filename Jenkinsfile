@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     MAJOR_VERSION = 1
+    JENKINS_IP = 10.0.1.254
   }
   stages {
     stage('Unit Tests') {
@@ -50,6 +51,6 @@ pipeline {
         sh "java -jar rectangle_${env.MAJOR_VERSION}.${env.BUILD_NUMBER}.jar 3 4"
       }
     }
-    
+
   }
 }
